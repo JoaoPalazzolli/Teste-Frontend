@@ -13,9 +13,9 @@
 
 <body>
     <nav class="navbar">
-        
+
         <a href="#"><img class="logo" src="contents/1630589843013-removebg-preview.png" alt="logo"></a>
-        
+
         <ul class="nav">
             <div class="container-nav-left">
                 <li><a href="#">Condomínios</a></li>
@@ -39,7 +39,7 @@
     </nav>
 
     <main>
-        
+
         <section class="container-info">
             <div class="first-data">
 
@@ -68,30 +68,52 @@
 
         <section class="container-info">
             <div class="container-dados-input">
-                <h1 style="color: #787878;">Mande uma mensage:</h1>
+                <h1 style="color: #1B2653;">Mande uma mensagem:</h1>
 
-                <div class="container-input-1">
-                    <input class="input" type="text" placeholder="Digite seu CPF">
+                <div class="container-input">
+                    <input type="text" id="cpf" class="input" maxlength="14" placeholder="Digite seu CPF">
+                    <input type="tel" id="telefone" class="input" maxlength="15" placeholder="Digite seu telefone">
+                    <textarea type="text" class="input-text" placeholder="Digite o assunto"></textarea>
+
+                    <button type="submit" class="btn-enviar">Enviar Mensagem</button>
                 </div>
 
-                <div class="container-input-2">
-                    <input class="input" type="text" placeholder="Digite seu telefone">
-                </div>
             </div>
 
         </section>
         <section class="container-info">
+            <div class="container-dados-regra3">
 
+                <div class="container-input">
+                    <input class="input-regra" type="number" placeholder="60">
+                    <input class="input-regra" placeholder="100">
+                    <input class="input-regra" placeholder="30">
+                </div>
+
+            </div>
         </section>
+
+        <section id="sectionModal" class="container-info">
+            <img id="imagemCasa" class="img-casa" src="/contents/014-casa-dotta-galeria-733.jpg" alt="casa moderna">
+
+            <div class="container-btn-da-img">
+                <button id="abrirImagem" type="button" class="btn-abrir-img">ABRIR IMAGEM NO MODAL</button>
+            </div>
+        </section>
+
         <section class="container-info">
 
+            <img class="img-casa" src="/contents/014-casa-dotta-galeria-733.jpg" alt="casa moderna">
+            <button type="button" class="btn-imovel-guide-img">Imovel Guide</button>
+
+            <div class="container-btn-da-img">
+                <button type="button" class="btn-download-img">Download</button>
+            </div>
         </section>
         <section class="container-info">
-
+            <img class="img-casa" src="/contents/014-casa-dotta-galeria-733.jpg" alt="casa moderna">
         </section>
-        <section class="container-info">
 
-        </section>
     </main>
 
     <footer class="container-footer">
@@ -106,10 +128,12 @@
                 <p class="copyright-text">© Copyright 2022. Todos os direitos reservados.</p>
 
             </div>
-            
+
             <img class="logo-footer" src="contents/1630589843013-removebg-preview.png" alt="logo">
         </ul>
     </footer>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
