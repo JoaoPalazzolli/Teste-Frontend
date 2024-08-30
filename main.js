@@ -1,21 +1,36 @@
-document.getElementById('cpf').addEventListener('input', (e) => {
-    let value = e.target.value.replace(/\D/g, ''); 
-    value = value.replace(/(\d{3})(\d)/, '$1.$2'); 
-    value = value.replace(/(\d{3})(\d)/, '$1.$2'); 
-    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); 
+const cpfInput = document.getElementById("cpf");
+const phoneInput = document.getElementById("telefone");
+const textInput = document.getElementById("text");
+const btnOpenImage = document.getElementById("abrirImagem");
+const btnGenerateImage = document.getElementById("generateImage");
+const btnSendMensage = document.getElementById("sendMensage");
+const number1Input = document.getElementById("inputRegra1");
+const number2Input = document.getElementById("inputRegra2");
+const number3Input = document.getElementById("inputRegra3");
+const result = document.getElementById("result");
+const imgZoom = document.getElementById("imgCasaZoom");
+const viewPhone = document.querySelectorAll("#verTelefone");
+
+cpf.addEventListener('input', (e) => {
+    e.preventDefault();
+    let value = e.target.value.replace(/\D/g, '');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     e.target.value = value;
 });
 
-document.getElementById('telefone').addEventListener('input', (e) => {
+phoneInput.addEventListener('input', (e) => {
+    e.preventDefault();
     let value = e.target.value.replace(/\D/g, '');
 
-    value = value.replace(/^(\d{2})(\d)/g, '($1) $2'); 
-    value = value.replace(/(\d{5})(\d)/, '$1-$2'); 
+    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+    value = value.replace(/(\d{5})(\d)/, '$1-$2');
 
     e.target.value = value;
 });
 
-document.getElementById('abrirImagem').addEventListener('click', (e) => {
+btnOpenImage.addEventListener('click', (e) => {
     e.preventDefault();
 
     const selection = document.getElementById('sectionModal');
@@ -35,14 +50,14 @@ document.getElementById('abrirImagem').addEventListener('click', (e) => {
     newDiv.id = "modalId";
 
     selection.appendChild(newDiv);
-    
+
     const modal = document.getElementById('imagemModal');
     const modalImg = document.getElementById('imgModal');
-    
-    
+
+
     modal.style.display = "block";
     modalImg.src = img.src;
-    
+
     document.getElementById('fecharModal').addEventListener('click', (e) => {
         e.preventDefault();
         document.getElementById('imagemModal').style.display = "none";
@@ -62,3 +77,80 @@ window.addEventListener('click', (e) => {
         selection.removeChild(removeDiv);
     }
 });
+
+btnGenerateImage.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    html2canvas(document.querySelector("#capture")).then(result => {
+        const btnDownload = document.createElement('a');
+
+        btnDownload.href = result.toDataURL("image/png");
+        btnDownload.download = 'minha-imagem.png';
+        btnDownload.click();
+        console.log("Iniciando Download");
+    }).catch(e => {
+        console.log("ERROR");
+    })
+});
+
+btnSendMensage.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    textInput.value = "";
+    phoneInput.value = "";
+    cpfInput.value = "";
+
+    alert("Mensagem Enviada com Sucesso!!!");
+});
+
+number1Input.addEventListener('keyup', (e) => {
+    if (number2Input.value && number3Input.value && number1Input.value) {
+        let resultado = (number2Input.value * number3Input.value) / number1Input.value;
+        result.innerText = resultado;
+    } else{
+        result.innerText = "";
+    }
+});
+
+number2Input.addEventListener('keyup', (e) => {
+    if (number2Input.value && number3Input.value && number1Input.value) {
+        let resultado = (number2Input.value * number3Input.value) / number1Input.value;
+        result.innerText = resultado;
+    } else{
+        result.innerText = "";
+    }
+});
+
+number3Input.addEventListener('keyup', (e) => {
+    if (number2Input.value && number3Input.value && number1Input.value) {
+        let resultado = (number2Input.value * number3Input.value) / number1Input.value;
+        result.innerText = resultado;
+    } else{
+        result.innerText = "";
+    }
+});
+
+viewPhone.forEach(btn => {
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if(e.target.title === "number1"){
+            btn.innerText = `(99) 99999-9999`;
+            btn.classList.remove("ver-telefone");
+            btn.classList.add("telefone");
+        }
+
+    })
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if(e.target.title === "number2"){
+            btn.innerText = `(22) 22222-2222`;
+            btn.classList.remove("ver-telefone");
+            btn.classList.add("telefone");
+        }
+
+    })
+})
